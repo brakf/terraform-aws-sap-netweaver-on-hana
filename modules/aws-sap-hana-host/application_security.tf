@@ -37,7 +37,8 @@ resource "aws_security_group_rule" "sap_application_https_in" {
   from_port   = "443"
   to_port     = "443"
   protocol    = "tcp"
-  cidr_blocks = concat([data.aws_vpc.vpc.cidr_block], var.customer_cidr_blocks)
+  cidr_blocks = [data.aws_vpc.vpc.cidr_block]
+  # cidr_blocks = concat([data.aws_vpc.vpc.cidr_block], var.customer_cidr_blocks)
 }
 
 resource "aws_security_group_rule" "sap_application_tcp1128-1129_in" {
@@ -48,7 +49,8 @@ resource "aws_security_group_rule" "sap_application_tcp1128-1129_in" {
   from_port         = "1128"
   to_port           = "1129"
   protocol          = "tcp"
-  cidr_blocks       = concat([data.aws_vpc.vpc.cidr_block], var.customer_cidr_blocks)
+  cidr_blocks = [data.aws_vpc.vpc.cidr_block]
+  # cidr_blocks       = concat([data.aws_vpc.vpc.cidr_block], var.customer_cidr_blocks)
 }
 
 resource "aws_security_group_rule" "sap_application_tcp50013-50015_in" {
@@ -59,7 +61,8 @@ resource "aws_security_group_rule" "sap_application_tcp50013-50015_in" {
   from_port         = "50013"
   to_port           = "50015"
   protocol          = "tcp"
-  cidr_blocks       = concat([data.aws_vpc.vpc.cidr_block], var.customer_cidr_blocks)
+  cidr_blocks = [data.aws_vpc.vpc.cidr_block]
+  # cidr_blocks       = concat([data.aws_vpc.vpc.cidr_block], var.customer_cidr_blocks)
 }
 
 resource "aws_security_group_rule" "sap_application_tcp30013-30015_in" {
@@ -70,5 +73,6 @@ resource "aws_security_group_rule" "sap_application_tcp30013-30015_in" {
   from_port         = "30013"
   to_port           = "30015"
   protocol          = "tcp"
-  cidr_blocks       = concat([data.aws_vpc.vpc.cidr_block], var.customer_cidr_blocks)
+    cidr_blocks = [data.aws_vpc.vpc.cidr_block]
+  # cidr_blocks       = concat([data.aws_vpc.vpc.cidr_block], var.customer_cidr_blocks)
 }
