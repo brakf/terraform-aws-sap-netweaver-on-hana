@@ -74,6 +74,9 @@ module hana_host {
 
   # SAP
   sid = var.sid
+
+  #ssh_key
+  ssh_key = var.ssh_key
 }
 
 module sap_ascs_host {
@@ -141,4 +144,22 @@ module sap_app_host {
   application_name = lower(var.application_name)
   # SAP
   sid = var.sid
+}
+
+locals {
+  binaries_bucket_name = ""
+}
+
+module sap_deployment {
+  source               = "./modules/sap-deploymentscripts"
+  binaries_bucket_name = local.binaries_bucket_name
+  binaries_key_arn     = var.kms_key_arn
+  binaries_folder      = ""
+  hana_instance_ids    = module.hana_host.instance_ids
+  kms_key_arn          = var.kms_key_arn
+  dns_zone_name        = var.dns_zone_name
+  product              = "S4HANA1909.CORE.HDB.ABAP"
+  application_code     = lower(var.application_code)
+  environment          = lower(var.environment_type)
+  application_name     = lower(var.application_name)
 }
